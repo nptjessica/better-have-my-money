@@ -11,3 +11,7 @@ h1{
 table tr th{
     text-align: left;
 }
+
+p{
+    font-style:italic;
+}
