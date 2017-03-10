@@ -19,6 +19,11 @@
 
 It's time to build on online business.
 
+My project is to build a page enable user to:
+- save his/her favorites/bookmarks
+- organize them
+- open all selected favorite with one click.
+
 ## How
 
 1. Sell something

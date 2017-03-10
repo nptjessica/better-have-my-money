@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="style.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <title>My Favorites/Bookmarks Manager</title>
+    </head>
+    <body onload="DisplayTableOrNot()">
+    <h1>My Favorite/Bookmarks Manager</h1>
+    <div>
+        <form>
+            <label for="address">Enter your favorite address or the address you want to save: </label><br>
+            <input type="text" id="address" placeholder="Address">
+            <input type="button" value="Ok">
+        </form>
+    </div>
+    <br>
+    <div id="table">
+        <table>
+            <tr>
+                <th>Favorite/ Bookmark</th>
+            </tr>
+            <tr>
+                <td id="row1"></td>
+            </tr>
+        </table>
+    </div>
+
+    <script src="index.js"></script>
+    </body>
+</html>

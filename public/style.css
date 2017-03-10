@@ -1,0 +1,13 @@
+h1{
+    text-align: center;
+    color: Skyblue;
+    background-color:white;
+}
+
+#address{
+    width:50%;
+}
+
+table tr th{
+    text-align: left;
+}
