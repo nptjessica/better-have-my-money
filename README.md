@@ -24,12 +24,19 @@ It's time to build on online business.
 1. Sell something
 1. Sell service(s)
 1. Monetize traffic
+1. From day to day automation
 ...
+
+## Requirements
+
+1. Front (css framework, lib...)
+1. Back
+  1. Api (with at least `GET` and `POST`)
+  1. Nosql database (`mongodb`, `redis`...)
 
 ## Just tell me what to do
 
-1. Fork the project via `github`
-1. Clone the project `git clone https://github.com/YOUR_USERNAME/better-have-my-money`
+1. Create repositorie(s) via `github`
 1. Think and build
 
 ## Don't forget
