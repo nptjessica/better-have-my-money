@@ -71,10 +71,24 @@ export default class Presentation extends React.Component {
             <Heading size={2} fit caps lineHeight={1} textColor="white">
               Monetize traffic
             </Heading>
+            <Heading size={2} fit caps lineHeight={1} textColor="white">
+              From day to day automation
+            </Heading>
           </Slide>
 					<Slide transition={["slide"]} bgColor="primary">
             <Heading size={1} lineHeight={1} textColor="white">
               ...
+            </Heading>
+          </Slide>
+          <Slide transition={["slide"]} bgColor="primary">
+            <Heading size={2} fit caps lineHeight={2} textColor="white">
+              Front (css framework, lib...)
+            </Heading>
+            <Heading size={2} fit caps lineHeight={2} textColor="white">
+              Api (with at least GET and POST)
+            </Heading>
+            <Heading size={2} fit caps lineHeight={2} textColor="white">
+              Nosql database (mongodb, redis...)
             </Heading>
           </Slide>
           <Slide transition={["slide"]} bgColor="primary">
@@ -84,8 +98,7 @@ export default class Presentation extends React.Component {
           </Slide>
           <Slide transition={["slide"]} bgColor="primary">
             <List ordered textColor="white">
-              <ListItem>Fork the project https://github.com/92bondstreet/better-have-my-money via github</ListItem>
-              <ListItem>Clone the project git clone https://github.com/YOUR_USERNAME/better-have-my-money</ListItem>
+              <ListItem>Create repositorie(s) on Github</ListItem>
               <ListItem>Think and do</ListItem>
             </List>
           </Slide>
