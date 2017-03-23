@@ -1,28 +1,33 @@
 /*if there is at least a row, display table of favorite
 otherwise, when the table is empty, hide table (first time)*/
 function DisplayTableOrNot(){
-    if($("#table").text().length == 0){
-            document.getElementById("divtable").style.display = "none";
+    if($("#list").text().length == 0){
+            //document.getElementById("divlist").style.display = "none";
+            //document.getElementById("divtable").style.display = "none";
     }
 }
 
 //fill list of Favorites
 function addFavorite(){
-    var table=document.getElementById("table");
+    var list=document.getElementById("list");
     var favoriteValue=document.getElementById("address").value;
-    var length=table.rows.length;
-    var row=table.insertRow(length);
+    var length=list.rows.length;
+    var row=list.insertRow(length);
 
-    if($("#table").text().length == 0){
+    if($("#list").text().length == 0){
+        document.getElementById("divlist").style.display = "block";
         document.getElementById("divtable").style.display = "block";
         length = 1;
-        document.getElementById("table").innerHTML ="<td><td><a name=\"id\" onclick=\"window.open('"+favoriteValue+"');\">"+length+"</a></td>"+
+        document.getElementById("list").innerHTML ="<td><a name=\"id\" onclick=\"window.open('"+favoriteValue+"');\">"+length+"</a></td>"+
                                                     "<td><a  name=\"address\"onclick=\"window.open('"+favoriteValue+"');\">"+favoriteValue+"</a><td>";
+                                                    //SCRAPE LOGO OF WEB SITE <img style=”max-width:300px;max-height:150px” src=”http://data.scrapelogo.com/{domain}/logo”>
     }
     else{
         length +=1;
-        row.innerHTML = "<td><td><a name=\"id\"onclick=\"window.open('"+favoriteValue+"');\">"+length+"</a></td>"+
-                        "<td><a name=\"address\"onclick=\"window.open('"+favoriteValue+"');\">"+favoriteValue+"</a><td>";
+        row.innerHTML = "<tr><td><a name=\"id\"onclick=\"window.open('"+favoriteValue+"');\">"+length+"</a></td>"+
+                        "<td><a name=\"address\"onclick=\"window.open('"+favoriteValue+"');\">"+favoriteValue+"</a><td><tr>";
+
+
     }
 }
 
@@ -67,7 +72,7 @@ function deleteRow(tableID) {
       // TODO: Call our function to get the form data.
       const data = {};
       // Demo only: print the form data onscreen as a formatted JSON object.
-      const dataContainer = document.getElementsById('#table');
+      const dataContainer = document.getElementsById('#list');
       // Use `JSON.stringify()` to make the output valid, human-readable JSON.
       dataContainer.textContent = JSON.stringify(data, null, "  ");
       // ...this is where we’d actually do something with the form data...
@@ -80,3 +85,18 @@ function handleSubmit(){
 function displayFavoriteJSON(){
     var favorite = loadJSON("favorite.json");
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

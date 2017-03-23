@@ -4,32 +4,58 @@
         <meta charset="UTF-8">
         <link rel="stylesheet" href="style.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+        <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+        <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
         <title>My Favorites/Bookmarks Manager</title>
     </head>
     <body onload="DisplayTableOrNot()">
     <h1>My Favorite/Bookmarks Manager</h1>
     <div>
         <form enctype="json" if="form">
-            <label for="address">Enter your favorite address or the address you want to save: </label><br>
+            <label for="address">Copy and paste your favorite address or the address you want to save: </label><br>
             <input type="text" id="address" name="address" placeholder="Address">
             <input type="button" value="Ok" onclick="addFavorite()">
         </form>
     </div>
-    <br>
-    <div id="divtable">
-        <h3>Favorite/ Bookmark</h3>
-        <table id="headertable">
+    <div id="divlist">
+        <h3>All your Bookmarks</h3>
+        <p>You can search your favorite site by type some words.</p>
+        <form>
+            <input id="filterListInput" data-type="search" placeholder="Search your favorite address">
+        </form>
+        <p>If you want to open a web site, click on the web site name.</p>
+        <table data-role="table" id="headerlist" data-filter="true" data-input="#filterInput" class="ui-responsive">
+            <thead>
             <tr>
-                <th>Id</th>
-                <th>Address</th>
+                <th data-priority="1">Id</th>
+                <th data-priority="2">Address</th>
+                <th data-priority="3">Remove</th>
             </tr>
+            </thead>
+            <tbody id="list"></tbody>
         </table>
-        <table id="table"></table>
-        <p>If you want to open a web site, click on the web site name </p>
     </div>
 
-    <div>
-        <p id="display"></p>
+    <div id="divtable">
+        <h3>Favorite Bookmarks</h3>
+        <input type="button" value="Open all my bookmarks" data-mini="true">
+        <form>
+            <input id="filterTableInput" data-type="search" placeholder="Search your favorite address">
+        </form>
+        <p>Favovite/Book you always want to open</p>
+
+        <table data-role="table" id="headertable" data-filter="true" data-input="#filterTableInput" class="ui-responsive">
+            <thead>
+            <tr>
+                <th data-priority="1">Id</th>
+                <th data-priority="2">Address</th>
+                <th data-priority="3">Remove</th>
+            </tr>
+            </thead>
+            <tbody id="table"></tbody>
+        </table>
+
     </div>
 
     <script src="index.js"></script>

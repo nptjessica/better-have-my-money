@@ -4,14 +4,27 @@ h1{
     background-color:white;
 }
 
-#address{
-    width:50%;
+#divlist, #divtable{
+width:48%;
 }
 
-table tr th{
-    text-align: left;
+#divlist{
+position:relative;
+float:left;
+padding-left:10px;
+padding-right:10px;
 }
 
+#divtable{
+position:relative;
+float:right;
+padding-left:10px;
+padding-right:10px;
+}
+
+#divlist form{
+padding-top:2px;
+}
 p{
     font-style:italic;
 }
