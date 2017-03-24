@@ -4,27 +4,32 @@ h1{
     background-color:white;
 }
 
+
+
 #divlist, #divtable{
-width:48%;
+    width:47%;
 }
 
 #divlist{
-position:relative;
-float:left;
-padding-left:10px;
-padding-right:10px;
-}
-
-#divtable{
-position:relative;
-float:right;
-padding-left:10px;
-padding-right:10px;
+    position:relative;
+    float:left;
+    padding-left:10px;
 }
 
 #divlist form{
-padding-top:2px;
+    padding-top:2px;
 }
+
 p{
     font-style:italic;
+}
+
+th{
+    text-align:center;
+}
+
+#divtable{
+    position:relative;
+    float:right;
+    padding-right:10px;
 }

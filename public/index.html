@@ -1,82 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <link rel="stylesheet" href="style.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-        <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
-        <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-        <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-        <title>My Favorites/Bookmarks Manager</title>
-    </head>
-    <body onload="DisplayTableOrNot()">
-    <h1>My Favorite/Bookmarks Manager</h1>
-    <div>
-        <form enctype="json" if="form">
-            <label for="address">Copy and paste your favorite address or the address you want to save: </label><br>
-            <input type="text" id="address" name="address" placeholder="Address">
-            <input type="button" value="Ok" onclick="addFavorite()">
-        </form>
-    </div>
-    <div id="divlist">
-        <h3>All your Bookmarks</h3>
-        <p>You can search your favorite site by type some words.</p>
-        <form>
-            <input id="filterListInput" data-type="search" placeholder="Search your favorite address">
-        </form>
-        <p>If you want to open a web site, click on the web site name.</p>
-        <table data-role="table" id="headerlist" data-filter="true" data-input="#filterInput" class="ui-responsive">
-            <thead>
-            <tr>
-                <th data-priority="1">Id</th>
-                <th data-priority="2">Address</th>
-                <th data-priority="3">Remove</th>
-            </tr>
-            </thead>
-            <tbody id="list"></tbody>
-        </table>
-    </div>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <!-- jQuery library-->
+    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <!-- Drap and Drop with jQuery library-->
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js"></script>
+    <title>My Favorites/Bookmarks Manager</title>
+</head>
+<body onload="DisplayTableOrNot()">
+<h1>My Favorite/Bookmarks Manager</h1>
+<div>
+    <form >
+        <label for="address">Copy and paste your favorite address or the address you want to save: </label><br>
+        <input type="text" id="address" name="address" placeholder="Address">
+        <input type="button" value="Ok" onclick="addFavorite()">
+    </form>
+</div>
+<div id="divlist">
+    <h3>All your Bookmarks</h3>
+    <p>You can search your favorite site by type some words.</p>
+    <form>
+        <input id="filterListInput" data-type="search" placeholder="Search your favorite address">
+    </form>
+    <p>If you want to open a web site, click on the web site name.</p>
+    <table data-role="table" id="allList" data-filter="true" data-input="#filterInput" class="ui-responsive">
+        <thead>
+        <tr>
+            <th data-priority="1">Id</th>
+            <th data-priority="2">Address</th>
+            <th data-priority="3">Remove</th>
+        </tr>
+        </thead>
+        <tbody id="list"></tbody>
+    </table>
+</div>
 
-    <div id="divtable">
-        <h3>Favorite Bookmarks</h3>
-        <input type="button" value="Open all my bookmarks" data-mini="true">
-        <form>
-            <input id="filterTableInput" data-type="search" placeholder="Search your favorite address">
-        </form>
-        <p>Favovite/Book you always want to open</p>
+<div id="divtable">
+    <h3>Favorite Bookmarks</h3>
+    <input type="button" value="Open all my bookmarks" data-mini="true" onclick="openAll()">
+    <form>
+        <input id="filterTableInput" data-type="search" placeholder="Search your favorite address">
+    </form>
+    <p>Favovite/Book you always want to open</p>
 
-        <table data-role="table" id="headertable" data-filter="true" data-input="#filterTableInput" class="ui-responsive">
-            <thead>
-            <tr>
-                <th data-priority="1">Id</th>
-                <th data-priority="2">Address</th>
-                <th data-priority="3">Remove</th>
-            </tr>
-            </thead>
-            <tbody id="table"></tbody>
-        </table>
+    <table data-role="table" id="favoriteTable" data-filter="true" data-input="#filterTableInput" class="ui-responsive" ondrop="drop(event)" ondragover="allowDrop(event)">
+        <thead >
+        <tr>
+            <th data-priority="1">Id</th>
+            <th data-priority="2">Address</th>
+            <th data-priority="3">Remove</th>
+        </tr>
+        </thead>
+        <tbody id="table">
+        <tr>
+            <td>1</td>
+            <td><a onclick="window.open('http://www.facebook.com');">facebook</a></td>
+            <td><input type="button" data-icon="delete" value="delete" data-iconpos="notext" onclick="deleteFavorite()" ></td>
+        </tr>
 
-    </div>
+        <tr>
+            <td>2</td>
+            <td><a onclick="window.open('http://www.google.com');">google</a></td>
+            <td><input type="button" data-icon="delete" value="delete" data-iconpos="notext" onclick="deleteFavorite()" ></td>
+        </tr>
 
-    <script src="index.js"></script>
-    <!--
-    retrieve json data https://www.w3schools.com/js/js_json_intro.asp
-    https://www.youtube.com/watch?v=j-S5MBs4y0Q
-    make an HTML table with data received as JSON https://www.w3schools.com/js/js_json_html.asp
+        </tbody>
 
+    </table>
+
+    <!--        <div id="dropzone" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+
+            <div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+
+            <br>
+            <a id="drag1" draggable="true" ondragstart="drag(event)">This is a draggable paragraph. Drag this element into the rectangle.</a>
     -->
-    <script>
-        $.getJSON('favorite.json', function(favoriteJSON){
-            //console.log(favoriteJSON);
-            var favoriteJSON = '{
-  "table": [
-    {"id":1,"address":"http://www.prizee.com/"}
-  ]
-}';
-            var favorite = JSON.parse(favoriteJSON);
-            document.getElementbyId("display").innerHTML = favoriteJSON;
+</div>
 
-        });
+
+
+<script src="index.js"></script>
+<!--
+retrieve json data https://www.w3schools.com/js/js_json_intro.asp
+https://www.youtube.com/watch?v=j-S5MBs4y0Q
+make an HTML table with data received as JSON https://www.w3schools.com/js/js_json_html.asp
+
+
+    <script>
+            $.getJSON('favorite.json', function(favoriteJSON){
+                //console.log(favoriteJSON);
+                var favoriteJSON = '{
+      "table": [
+        {"id":1,"address":"http://www.prizee.com/"}
+      ]
+    }';
+                var favorite = JSON.parse(favoriteJSON);
+                document.getElementbyId("display").innerHTML = favoriteJSON;
+
+            });
+    </script>-->
+
+    <script>
+    $('a').click(function() {
+        window.open($(this).attr('href') );
+    });
+
+    $('openAll').click(function() {
+        $('a').click();
+    });
 </script>
-    </body>
+</body>
 </html>

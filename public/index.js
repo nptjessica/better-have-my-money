@@ -1,3 +1,6 @@
+var list = document.getElementById("list");
+var favoriteValue = document.getElementById("address").value;
+
 /*if there is at least a row, display table of favorite
 otherwise, when the table is empty, hide table (first time)*/
 function DisplayTableOrNot(){
@@ -7,52 +10,84 @@ function DisplayTableOrNot(){
     }
 }
 
-//fill list of Favorites
-function addFavorite(){
-    var list=document.getElementById("list");
-    var favoriteValue=document.getElementById("address").value;
-    var length=list.rows.length;
-    var row=list.insertRow(length);
+function trimAddress(){
 
+}
+
+//fill list of Favorites/add a bookmark into the list
+function addFavorite(){
+
+    var length = list.rows.length;
+    var row = list.insertRow(length);
+
+    var id= "<td><a name=\"id\" onclick=\"window.open('"+favoriteValue+"');\"  draggable=\"true\" ondragstart\"drag(event)\" >"+length+"</a></td>";
+    var image ="<td><a  name=\"address\" onclick=\"window.open('"+favoriteValue+"');\" >"+"<img style=\"max-width:300px;max-height:150px\" src=\"http://data.scrapelogo.com/" + favoriteValue+ "/logo\">"+"</a><td>";
+    var //address = "<td><a  name=\"address\" onclick=\"window.open('"+favoriteValue+"');\" draggable=\"true\" ondragstart\"drag(event)\" >"+favoriteValue+"</a><td>";
+     buttonDelete = "<td><input type=\"button\" data-icon=\"delete\" value=\"delete\" data-iconpos=\"notext\" onclick=\"deleteFavorite()\" ></td>";
+        //SCRAPE LOGO OF WEB SITE <img style=\"max-width:300px;max-height:150px\" src=\"http://data.scrapelogo.com/" + {domain}+ "/logo\">"
     if($("#list").text().length == 0){
         document.getElementById("divlist").style.display = "block";
-        document.getElementById("divtable").style.display = "block";
         length = 1;
-        document.getElementById("list").innerHTML ="<td><a name=\"id\" onclick=\"window.open('"+favoriteValue+"');\">"+length+"</a></td>"+
-                                                    "<td><a  name=\"address\"onclick=\"window.open('"+favoriteValue+"');\">"+favoriteValue+"</a><td>";
-                                                    //SCRAPE LOGO OF WEB SITE <img style=”max-width:300px;max-height:150px” src=”http://data.scrapelogo.com/{domain}/logo”>
+        document.getElementById("list").innerHTML = id + image + buttonDelete;
+
+        document.getElementById("divtable").style.display = "block";
+
     }
     else{
-        length +=1;
-        row.innerHTML = "<tr><td><a name=\"id\"onclick=\"window.open('"+favoriteValue+"');\">"+length+"</a></td>"+
-                        "<td><a name=\"address\"onclick=\"window.open('"+favoriteValue+"');\">"+favoriteValue+"</a><td><tr>";
-
-
+        length += 1;
+        row.innerHTML = id + address + buttonDelete;
     }
 }
+//delete the Favorite row from the list
+function deleteFavorite()
+  {
+    var current = window.event.srcElement;
+    //here we will delete the line
+    while ( (current = current.parentElement)  && current.tagName !="TR");
+         current.parentElement.removeChild(current);
+  }
 
 
 /*
-function deleteRow(tableID) {
-    var table = document.getElementById(tableID);
-    var rowCount = table.rows.length;
+//drag and drop
+$( init );
 
-    for(var i=0; i<rowCount; i++) {
-        var row = table.rows[i];
-        var chkbox = row.cells[0].childNodes[0];
-        if(null != chkbox && true == chkbox.checked) {
-            table.deleteRow(i);
-            rowCount--;
-            i--;
-        }
-    }
+function init() {
+  $('#allList').draggable(){
+    helper:"clone"
+  };
+  $('#divtable').droppable( {
+    drop: handleDropEvent
+  } );
 }
-*/
+
+function handleDropEvent( event, ui ) {
+  var draggable = ui.draggable;
+  alert( 'The square with ID "' + draggable.attr('id') + '" was dropped onto me!' );
+}
+
+function allowDrop(ev) {
+    ev.preventDefault();
+}
+
+function drag(ev) {
+    ev.dataTransfer.setData("Link", ev.target.id);
+}
+
+function drop(ev) {
+    var data = ev.dataTransfer.getData("Link");
+    ev.target.appendChild(document.getElementById(data));
+    ev.preventDefault();
+}
+
+
+
+
 
 
     /*get the favorite address and put it the JSON file
     https://code.lengstorf.com/get-form-values-as-json/
-    */
+
 
     //find our form in the DOM using its id
     const form = document.getElementById('#form');
@@ -65,11 +100,10 @@ function deleteRow(tableID) {
      * A handler function to prevent default submission and run our custom script.
      * @param  {Event} event  the submit event triggered by the user
      * @return {void}
-     */
+
     const handleFormSubmit = event => {
       // Stop the form from submitting since we’re handling that with AJAX.
       event.preventDefault();
-      // TODO: Call our function to get the form data.
       const data = {};
       // Demo only: print the form data onscreen as a formatted JSON object.
       const dataContainer = document.getElementsById('#list');
@@ -86,7 +120,7 @@ function displayFavoriteJSON(){
     var favorite = loadJSON("favorite.json");
 }
 
-
+*/
 
 
 
